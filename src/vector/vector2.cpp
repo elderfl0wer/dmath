@@ -51,3 +51,9 @@ vec2<T> reflection(vec2<T>* v)
 	
 	return v - (2 * (dot<T>(v, n))) * n;
 }
+
+template<std::floating_point T>
+vec2<T> rotate(vec2<T>* v, const double angle)
+{
+	return { v->x * cos(angle) - v->y * sin(angle), v->x * sin(angle) + v->y * cos(angle) };
+}
