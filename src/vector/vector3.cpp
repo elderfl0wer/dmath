@@ -63,3 +63,8 @@ vec3<T> reflection(vec3<T>& v)
 	return v - (2 * (dot<T>(v, n))) * n;
 }
 
+template<std::floating_point T>
+vec3<T> lerp(vec3<T>& a, vec3<T>& b, const T t)
+{
+    return a + t*(b-a);
+}

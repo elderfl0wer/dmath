@@ -4,5 +4,5 @@
 #include "vector/vector3.hpp"
 
 namespace dmath {
-    
+
 }

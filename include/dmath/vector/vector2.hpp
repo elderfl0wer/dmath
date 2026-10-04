@@ -60,5 +60,7 @@ template<std::floating_point T>
 vec2<T> reflection(vec2<T>& v);
 template<std::floating_point T>
 vec2<T> rotate(vec2<T>& v, const double angle);
+template<std::floating_point T>
+vec2<T> lerp(vec2<T>& a, vec2<T>& b, const T t);
 
 #endif // !VECTOR2_HPP

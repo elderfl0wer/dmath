@@ -67,5 +67,7 @@ template<std::floating_point T>
 vec3<T> orthogonal(vec3<T>& a, vec3<T>& b);
 template<std::floating_point T>
 vec3<T> reflection(vec3<T>& v);
+template<std::floating_point T>
+vec3<T> lerp(vec3<T>& a, vec3<T>& b, const T t);
 
 #endif // !VECTOR3_HPP

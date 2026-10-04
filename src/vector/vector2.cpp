@@ -57,3 +57,9 @@ vec2<T> rotate(vec2<T>& v, const T angle)
 {
 	return { v->x * cos(angle) - v->y * sin(angle), v->x * sin(angle) + v->y * cos(angle) };
 }
+
+template<std::floating_point T>
+vec2<T> lerp(vec2<T>& a, vec2<T>& b, const T t)
+{
+    return a + t*(b-a);
+}
