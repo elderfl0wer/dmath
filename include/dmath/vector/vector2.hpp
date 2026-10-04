@@ -3,14 +3,14 @@
 
 #include <cmath>
 #include <concepts>
+#include <vector>
 
-template<typename T>
-requires std::double_t<T> || std::float_t<T> || std::int<T>
+template<std::floating_point T>
 class vec2 {
 public:
 	T x, y;
 
-	double length() {
+	T length() {
 		return std::sqrt(x * x + y * y);
 	}
 	vec2<T> normalized() {
@@ -22,16 +22,26 @@ public:
 		y *= factor;
 		return;
 	}
+	std::vector<T> dircos() {
+		return { x / length(), y / length() };
+	}
 
 	vec2<T> operator+ (const vec2& other) {
 		return { x + other.x, y + other.y };
 	}
 	vec2<T> operator- (const vec2& other) {
-		return { x - other.x, y - pther.y };
+		return { x - other.x, y - other.y };
 	}
 	vec2<T> operator* (const T factor) {
 		return { x * factor, y * factor };
 	}
 };
+
+template<std::floating_point T>
+T dot(vec2<T>* a, vec2<T>* b);
+template<std::floating_point T>
+T distance(vec2<T>* a, vec2<T>* b);
+template<std::floating_point T>
+T mutual_angle(vec2<T>* a, vec2<T>* b);
 
 #endif // !VECTOR2_HPP

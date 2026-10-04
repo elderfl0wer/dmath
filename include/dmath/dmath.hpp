@@ -1,9 +1,8 @@
-#ifndef DMATH_HPP
-#define DMATH_HPP
+#pragma once
+
+#include "vector/vector2.hpp"
+#include "vector/vector3.hpp"
 
 namespace dmath {
-    #include "vector/vector2.hpp"
-
+    
 }
-
-#endif /* DMATH_HPP */
