@@ -25,6 +25,11 @@ public:
 	std::vector<T> dircos() {
 		return { x / length(), y / length() };
 	}
+	void rotate(const double angle) {
+		x = x * cos(angle) - y * sin(angle);
+		y = x * sin(angle) + y * cos(angle);
+		return;
+	}
 
 	vec2<T> operator+ (const vec2& other) {
 		return { x + other.x, y + other.y };

@@ -14,7 +14,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 # Define the static library target
-add_library(dmath STATIC ${SOURCES})
+add_library(dmath STATIC ${SOURCES} "src/vector/vector3.cpp")
 
 # Configure include directories
 # PUBLIC: Headers inside include/ are usable by dmath AND any consuming target

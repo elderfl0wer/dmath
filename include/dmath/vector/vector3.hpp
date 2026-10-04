@@ -5,6 +5,8 @@
 #include <concepts>
 #include <vector>
 
+#include "../dmath.hpp"
+
 template<std::floating_point T>
 class vec3 {
 public:
@@ -26,6 +28,19 @@ public:
 	std::vector<T> dircos() {
 		return { x / length(), y / length(), z / length()};
 	}
+	void rotate(const vec3<T>& other, const double angle) {
+		vec3<T> k = other.normalized();
+
+		vec3<T> v{ x, y };
+
+		vec3<T> k1 = v * cos(angle);
+		vec3<T> k2 = cross<T>(k, v) * sin(angle);
+		vec3<T> k3 = (dot<T>(k, v) * (1 - cos(angle))) * k;
+	
+		x = k1->x + k2 > x + k3->x;
+		y = k1->y + k2 > y + k3->y;
+		z = k1->z + k2 > z + k3->z;
+	}
 
 	vec2<T> operator+ (const vec2& other) {
 		return { x + other.x, y + other.y, z + other.z };
@@ -37,5 +52,10 @@ public:
 		return { x * factor, y * factor, z * factor };
 	}
 };
+
+template<std::floating_point T>
+T dot(vec3<T>* a, vec3<T>* b);
+template<std::floating_point T>
+vec3<T> cross(vec3<T>* a, vec3<T>* b);
 
 #endif // !VECTOR3_HPP
