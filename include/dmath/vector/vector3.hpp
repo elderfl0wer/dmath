@@ -51,6 +51,9 @@ public:
 	}
 };
 
+using vec3f = vec3<float>;
+using vec3d = vec3<double>;
+
 template<std::floating_point T>
 T dot(vec3<T>& a, vec3<T>& b);
 template<std::floating_point T>
