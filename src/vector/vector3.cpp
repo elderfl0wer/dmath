@@ -47,3 +47,19 @@ vec3<T> project(vec3<T>* a, vec3<T>* b)
 
     return k * b;
 }
+
+template<std::floating_point T>
+vec3<T> orthogonal(vec3<T>* a, vec3<T>* b)
+{
+	vec3<T> k = project<T>(a, b);
+	return a - k;
+}
+
+template<std::floating_point T>
+vec3<T> reflection(vec3<T>* v)
+{
+	vec2<T> n = v->normalized;
+	
+	return v - (2 * (dot<T>(v, n))) * n;
+}
+
