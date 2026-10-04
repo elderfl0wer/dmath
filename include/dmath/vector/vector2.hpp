@@ -27,7 +27,7 @@ public:
 	std::vector<T> dircos() {
 		return { x / length(), y / length() };
 	}
-	void rotate(const double angle) {
+	void rotate(const T angle) {
 		x = x * cos(angle) - y * sin(angle);
 		y = x * sin(angle) + y * cos(angle);
 		return;
@@ -45,20 +45,20 @@ public:
 };
 
 template<std::floating_point T>
-T dot(vec2<T>* a, vec2<T>* b);
+T dot(vec2<T>& a, vec2<T>& b);
 template<std::floating_point T>
-T distance(vec2<T>* a, vec2<T>* b);
+T distance(vec2<T>& a, vec2<T>& b);
 template<std::floating_point T>
-T mutual_angle(vec2<T>* a, vec2<T>* b);
+T mutual_angle(vec2<T>& a, vec2<T>& b);
 template<std::floating_point T>
-vec3<T> cross(vec2<T>* a, vec2<T>* b);
+vec3<T> cross(vec2<T>& a, vec2<T>& b);
 template<std::floating_point T>
-vec2<T> project(vec2<T>* a, vec2<T>* b);
+vec2<T> project(vec2<T>& a, vec2<T>& b);
 template<std::floating_point T>
-vec2<T> orthogonal(vec2<T>* a, vec2<T>* b);
+vec2<T> orthogonal(vec2<T>& a, vec2<T>& b);
 template<std::floating_point T>
-vec2<T> reflection(vec2<T>* v);
+vec2<T> reflection(vec2<T>& v);
 template<std::floating_point T>
-vec2<T> rotate(vec2<T>* v, const double angle);
+vec2<T> rotate(vec2<T>& v, const double angle);
 
 #endif // !VECTOR2_HPP
