@@ -26,3 +26,24 @@ vec3<T> rotate(vec3<T>* v, const vec3<T>& other, const double angle)
 
 	return k1 + k2 + k3;
 }
+
+template<std::floating_point T>
+T distance(vec3<T>* a, vec3<T>* b)
+{
+    vec3<T> ans = a-b;
+    return ans.length();
+}
+
+template<std::floating_point T>
+T mutual_angle(vec3<T>* a, vec3<T>* b)
+{
+    return std::acos(dot<T>(a, b) / (a->length()*b->length()));
+}
+
+template<std::floating_point T>
+vec3<T> project(vec3<T>* a, vec3<T>* b)
+{
+    T k = dot<T>(a, b) / std::pow(b->length(), 2);
+
+    return k * b;
+}
