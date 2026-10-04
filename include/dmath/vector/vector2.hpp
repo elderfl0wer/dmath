@@ -5,6 +5,8 @@
 #include <concepts>
 #include <vector>
 
+#include "vector3.hpp"
+
 template<std::floating_point T>
 class vec2 {
 public:

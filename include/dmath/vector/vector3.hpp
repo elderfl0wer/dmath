@@ -5,8 +5,6 @@
 #include <concepts>
 #include <vector>
 
-#include "../dmath.hpp"
-
 template<std::floating_point T>
 class vec3 {
 public:
@@ -15,7 +13,7 @@ public:
 	T length() {
 		return std::sqrt(x * x + y * y + z * z);
 	}
-	vec2<T> normalized() {
+	vec3<T> normalized() {
 		const double factor{ 1 / std::sqrt(x * x + y * y + z * z) };
 		return { x * factor, y * factor, z*factor};
 	}
@@ -42,13 +40,13 @@ public:
 		z = k1->z + k2 > z + k3->z;
 	}
 
-	vec2<T> operator+ (const vec2& other) {
+	vec3<T> operator+ (const vec3<T>& other) {
 		return { x + other.x, y + other.y, z + other.z };
 	}
-	vec2<T> operator- (const vec2& other) {
+	vec3<T> operator- (const vec3<T>& other) {
 		return { x - other.x, y - other.y, z - other.z };
 	}
-	vec2<T> operator* (const T factor) {
+	vec3<T> operator* (const T factor) {
 		return { x * factor, y * factor, z * factor };
 	}
 };

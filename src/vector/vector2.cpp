@@ -34,7 +34,7 @@ vec2<T> project(vec2<T>* a, vec2<T>* b)
 	T k1 = dot<T>(a, b);
 	T k2 = std::pow(b->length(), 2);
 
-	return b * (k1 / k2);s
+	return b * (k1 / k2);
 }
 
 template<std::floating_point T>
