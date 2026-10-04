@@ -57,5 +57,15 @@ template<std::floating_point T>
 vec3<T> cross(vec3<T>* a, vec3<T>* b);
 template<std::floating_point T>
 vec3<T> rotate(const vec3<T>& other, const double angle);
+template<std::floating_point T>
+T distance(vec3<T>* a, vec3<T>* b);
+template<std::floating_point T>
+T mutual_angle(vec3<T>* a, vec3<T>* b);
+template<std::floating_point T>
+vec3<T> project(vec3<T>* a, vec3<T>* b);
+template<std::floating_point T>
+vec3<T> orthogonal(vec3<T>* a, vec3<T>* b);
+template<std::floating_point T>
+vec3<T> reflection(vec3<T>* v);
 
 #endif // !VECTOR3_HPP
