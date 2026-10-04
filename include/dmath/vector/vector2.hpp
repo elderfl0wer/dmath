@@ -48,5 +48,15 @@ template<std::floating_point T>
 T distance(vec2<T>* a, vec2<T>* b);
 template<std::floating_point T>
 T mutual_angle(vec2<T>* a, vec2<T>* b);
+template<std::floating_point T>
+vec3<T> cross(vec2<T>* a, vec2<T>* b);
+template<std::floating_point T>
+vec2<T> project(vec2<T>* a, vec2<T>* b);
+template<std::floating_point T>
+vec2<T> orthogonal(vec2<T>* a, vec2<T>* b);
+template<std::floating_point T>
+vec2<T> reflection(vec2<T>* v);
+template<std::floating_point T>
+vec2<T> rotate(vec2<T>* v, const double angle);
 
 #endif // !VECTOR2_HPP

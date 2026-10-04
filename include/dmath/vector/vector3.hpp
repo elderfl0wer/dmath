@@ -31,7 +31,7 @@ public:
 	void rotate(const vec3<T>& other, const double angle) {
 		vec3<T> k = other.normalized();
 
-		vec3<T> v{ x, y };
+		vec3<T> v{ x, y, z };
 
 		vec3<T> k1 = v * cos(angle);
 		vec3<T> k2 = cross<T>(k, v) * sin(angle);
@@ -57,5 +57,7 @@ template<std::floating_point T>
 T dot(vec3<T>* a, vec3<T>* b);
 template<std::floating_point T>
 vec3<T> cross(vec3<T>* a, vec3<T>* b);
+template<std::floating_point T>
+vec3<T> rotate(const vec3<T>& other, const double angle);
 
 #endif // !VECTOR3_HPP
