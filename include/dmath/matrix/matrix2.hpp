@@ -72,9 +72,9 @@ public:
     }
 
 
-
     constexpr T magnitude() {
-        rows[0].x*rows[1].y - rows[0].y*rows[1].x;
+        mat2<T> ans = *this;
+        return ans(1, 1)*ans(2, 2) - ans(1, 2)*ans(2, 1);
     }
     bool is_singular() {
         if (magnitude() == 0) {
