@@ -61,6 +61,15 @@ public:
 
         return ans;
     }
+    constexpr mat2<T>& operator*(const mat2<T>& other) {
+        mat2<T> ans;
+        ans(1, 1) = (*this)(1, 1)*other(1, 1) + (*this)(1, 2)*other(2, 1);
+        ans(1, 2) = (*this)(1, 1)*other(1, 2) + (*this)(1, 2)*other(2, 2);
+        ans(2, 1) = (*this)(2, 1)*other(1, 1) + (*this)(2, 2)*other(2, 1);
+        ans(2, 2) = (*this)(2, 1)*other(1, 2) + (*this)(2, 2)*other(2, 2);
+
+        return ans;
+    }
 
 
 
