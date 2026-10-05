@@ -12,7 +12,7 @@ template<std::floating_point T>
 class mat2 {
 public:
     vec2<T> rows[2]; // the horizontal ones
-                     //
+
     constexpr const vec2<T>& operator[](std::size_t i) const {
         return rows[i];
     }
@@ -64,7 +64,7 @@ public:
 
 
 
-    T magnitude() {
+    constexpr T magnitude() {
         rows[0].x*rows[1].y - rows[0].y*rows[1].x;
     }
     bool is_singular() {
@@ -73,14 +73,12 @@ public:
         }
         return false;
     }
-    mat2<T> minor() {
-        mat2<T> ans = {
-            {rows[1].y, rows[1].x},
-            {rows[0].y, rows[0].x}
-        };
+    void transpose() {
+        mat2<T> k = *this;
+
+        rows[1].x = k(1, 2);
+        rows[0].y = k(2, 1);
     }
-
-
 
 };
 
