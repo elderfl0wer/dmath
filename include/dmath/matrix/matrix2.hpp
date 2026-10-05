@@ -70,6 +70,49 @@ public:
 
         return ans;
     }
+    constexpr bool operator==(const mat2<T>& other) {
+        mat2<T> m = *this;
+        if (
+                m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) &&
+                m(2, 1) == other(2, 1) && m(2, 2) == other(2, 2)
+           ) {
+            return true;
+        }
+
+        return false;
+    }
+    constexpr bool operator!=(const mat2<T>& other) {
+        mat2<T> m = *this;
+        if (
+                m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) &&
+                m(2, 1) == other(2, 1) && m(2, 2) == other(2, 2)
+           ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static constexpr mat2<T> identity() {
+        return {
+            {1, 0},
+            {0, 1}
+        };
+    }
+    static constexpr mat2<T> zero() {
+        return {
+            {0, 0},
+            {0, 0}
+        };
+    }
+    static constexpr mat2<T> rotation(const T theta) {
+        return {
+            {cos(theta), -sin(theta)},
+            {sin(theta), cos(theta)}
+        };
+    }
+
+
 
 
     constexpr T magnitude() {
@@ -87,6 +130,38 @@ public:
 
         rows[1].x = k(1, 2);
         rows[0].y = k(2, 1);
+    }
+    constexpr T trace() {
+        mat2<T> m = *this;
+        return m(1, 1)+m(2, 2);
+    }
+    constexpr bool is_identity() {
+        mat2<T> m = *this;
+        mat2<T> I = {
+            {1, 0},
+            {0, 1}
+        };
+
+        if (m == I) {
+            return true;
+        }
+        return false;
+    }
+    constexpr bool is_symmetric() {
+        mat2<T> m = *this;
+
+        if (m == m.transpose()) {
+            return true;
+        }
+        return false;
+    }
+    constexpr bool is_skew_symmetric() {
+        mat2<T> m = *this;
+
+        if (m == (-1*m.transpose())) {
+            return true;
+        }
+        return false;
     }
 
 };
