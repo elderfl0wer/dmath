@@ -25,8 +25,8 @@ public:
             ? rows[row-1].x
             : rows[row-1].y;
     }
-    constexpr const mat2<T>& operator+(const T k) {
-        mat2<T> ans;
+    constexpr mat2<T>& operator+(const T k) const {
+        mat2<T> ans = *this;
         ans(1, 1) += k;
         ans(1, 2) += k;
         ans(2, 1) += k;
@@ -34,26 +34,26 @@ public:
 
         return ans;
     }
-    constexpr const mat2<T>& operator+(const mat2<T>& other) {
+    constexpr mat2<T>& operator+(const mat2<T>& other) {
         mat2<T> ans;
-        ans(1, 1) = rows(1, 1) + other(1, 1);
-        ans(1, 2) = rows(1, 2) + other(1, 2);
-        ans(2, 1) = rows(2, 1) + other(2, 1);
-        ans(2, 2) = rows(2, 2) + other(2, 2);
+        ans(1, 1) = (*this)(1, 1) + other(1, 1);
+        ans(1, 2) = (*this)(1, 2) + other(1, 2);
+        ans(2, 1) = (*this)(2, 1) + other(2, 1);
+        ans(2, 2) = (*this)(2, 2) + other(2, 2);
 
         return ans;
     }
-    constexpr const mat2<T>& operator-(const mat2<T>& other) {
+    constexpr mat2<T>& operator-(const mat2<T>& other) {
         mat2<T> ans;
-        ans(1, 1) = rows(1, 1) - other(1, 1);
-        ans(1, 2) = rows(1, 2) - other(1, 2);
-        ans(2, 1) = rows(2, 1) - other(2, 1);
-        ans(2, 2) = rows(2, 2) - other(2, 2);
+        ans(1, 1) = (*this)(1, 1) - other(1, 1);
+        ans(1, 2) = (*this)(1, 2) - other(1, 2);
+        ans(2, 1) = (*this)(2, 1) - other(2, 1);
+        ans(2, 2) = (*this)(2, 2) - other(2, 2);
 
         return ans;
     }
-    constexpr const mat2<T>& operator*(const T k) {
-        mat2<T> ans;
+    constexpr mat2<T>& operator*(const T k) const {
+        mat2<T> ans = *this;
         ans(1, 1) *= k;
         ans(1, 2) *= k;
         ans(2, 1) *= k;
