@@ -4,6 +4,7 @@
 #include <cmath>
 #include <concepts>
 #include <cstddef>
+#include <stdexcept>
 
 #include "../vector/vector2.hpp"
 
@@ -16,9 +17,13 @@ public:
         return rows[i];
     }
     constexpr T& operator()(std::size_t row, std::size_t col) {
-        return col == 0
-            ? rows[row].x
-            : rows[row].y;
+        if (row < 1 || row > 2 || col < 1 || col > 2) {
+        throw std::out_of_range("index out of range");
+        }
+
+        return col == 1
+            ? rows[row-1].x
+            : rows[row-1].y;
     }
     constexpr const vec2<T>& operator+(const T k) {
         rows[0].x += k;
@@ -26,6 +31,26 @@ public:
         rows[1].x += k;
         rows[1].y += k;
     }
+    constexpr const vec2<T>& operator+(const mat2<T>& other) {
+        mat2<T> ans;
+        ans(1, 1) = rows(1, 1) + other(1, 1);
+        ans(1, 2) = rows(1, 2) + other(1, 2);
+        ans(2, 1) = rows(2, 1) + other(2, 1);
+        ans(2, 2) = rows(2, 2) + other(2, 2);
+
+        return ans;
+    }
+    constexpr const vec2<T>& operator-(const mat2<T>& other) {
+        mat2<T> ans;
+        ans(1, 1) = rows(1, 1) - other(1, 1);
+        ans(1, 2) = rows(1, 2) - other(1, 2);
+        ans(2, 1) = rows(2, 1) - other(2, 1);
+        ans(2, 2) = rows(2, 2) - other(2, 2);
+
+        return ans;
+    }
+
+
 
     T magnitude() {
         rows[0].x*rows[1].y - rows[0].y*rows[1].x;
