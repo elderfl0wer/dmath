@@ -5,7 +5,7 @@
 #include <concepts>
 #include <cstddef>
 
-#include "../../include/dmath/vector/vector2.hpp"
+#include "../vector/vector2.hpp"
 
 template<std::floating_point T>
 class mat2 {
@@ -48,3 +48,4 @@ public:
 };
 
 #endif /* MATRIX2_CPP */
+
