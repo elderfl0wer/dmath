@@ -137,10 +137,7 @@ public:
     }
     constexpr bool is_identity() {
         mat2<T> m = *this;
-        mat2<T> I = {
-            {1, 0},
-            {0, 1}
-        };
+        mat2<T> I = identity();
 
         if (m == I) {
             return true;
