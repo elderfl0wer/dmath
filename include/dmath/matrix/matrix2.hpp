@@ -25,13 +25,16 @@ public:
             ? rows[row-1].x
             : rows[row-1].y;
     }
-    constexpr const vec2<T>& operator+(const T k) {
-        rows[0].x += k;
-        rows[0].y += k;
-        rows[1].x += k;
-        rows[1].y += k;
+    constexpr const mat2<T>& operator+(const T k) {
+        mat2<T> ans;
+        ans(1, 1) += k;
+        ans(1, 2) += k;
+        ans(2, 1) += k;
+        ans(2, 2) += k;
+
+        return ans;
     }
-    constexpr const vec2<T>& operator+(const mat2<T>& other) {
+    constexpr const mat2<T>& operator+(const mat2<T>& other) {
         mat2<T> ans;
         ans(1, 1) = rows(1, 1) + other(1, 1);
         ans(1, 2) = rows(1, 2) + other(1, 2);
@@ -40,12 +43,21 @@ public:
 
         return ans;
     }
-    constexpr const vec2<T>& operator-(const mat2<T>& other) {
+    constexpr const mat2<T>& operator-(const mat2<T>& other) {
         mat2<T> ans;
         ans(1, 1) = rows(1, 1) - other(1, 1);
         ans(1, 2) = rows(1, 2) - other(1, 2);
         ans(2, 1) = rows(2, 1) - other(2, 1);
         ans(2, 2) = rows(2, 2) - other(2, 2);
+
+        return ans;
+    }
+    constexpr const mat2<T>& operator*(const T k) {
+        mat2<T> ans;
+        ans(1, 1) *= k;
+        ans(1, 2) *= k;
+        ans(2, 1) *= k;
+        ans(2, 2) *= k;
 
         return ans;
     }
