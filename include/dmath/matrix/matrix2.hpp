@@ -4,6 +4,7 @@
 #include <cmath>
 #include <concepts>
 #include <cstddef>
+#include <cstdint>
 #include <stdexcept>
 
 #include "../vector/vector2.hpp"
@@ -25,7 +26,7 @@ public:
             ? rows[row-1].x
             : rows[row-1].y;
     }
-    constexpr mat2<T>& operator+(const T k) const {
+    constexpr mat2<T> operator+(const T k) const {
         mat2<T> ans = *this;
         ans(1, 1) += k;
         ans(1, 2) += k;
@@ -34,7 +35,7 @@ public:
 
         return ans;
     }
-    constexpr mat2<T>& operator+(const mat2<T>& other) {
+    constexpr mat2<T> operator+(const mat2<T>& other) const {
         mat2<T> ans;
         ans(1, 1) = (*this)(1, 1) + other(1, 1);
         ans(1, 2) = (*this)(1, 2) + other(1, 2);
@@ -43,7 +44,7 @@ public:
 
         return ans;
     }
-    constexpr mat2<T>& operator-(const mat2<T>& other) {
+    constexpr mat2<T> operator-(const mat2<T>& other) const {
         mat2<T> ans;
         ans(1, 1) = (*this)(1, 1) - other(1, 1);
         ans(1, 2) = (*this)(1, 2) - other(1, 2);
@@ -52,7 +53,7 @@ public:
 
         return ans;
     }
-    constexpr mat2<T>& operator*(const T k) const {
+    constexpr mat2<T> operator*(const T k) const {
         mat2<T> ans = *this;
         ans(1, 1) *= k;
         ans(1, 2) *= k;
@@ -61,7 +62,7 @@ public:
 
         return ans;
     }
-    constexpr mat2<T>& operator*(const mat2<T>& other) {
+    constexpr mat2<T> operator*(const mat2<T>& other) const {
         mat2<T> ans;
         ans(1, 1) = (*this)(1, 1)*other(1, 1) + (*this)(1, 2)*other(2, 1);
         ans(1, 2) = (*this)(1, 1)*other(1, 2) + (*this)(1, 2)*other(2, 2);
@@ -70,7 +71,7 @@ public:
 
         return ans;
     }
-    constexpr bool operator==(const mat2<T>& other) {
+    constexpr bool operator==(const mat2<T>& other) const {
         mat2<T> m = *this;
         if (
                 m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) &&
@@ -81,7 +82,7 @@ public:
 
         return false;
     }
-    constexpr bool operator!=(const mat2<T>& other) {
+    constexpr bool operator!=(const mat2<T>& other) const {
         mat2<T> m = *this;
         if (
                 m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) &&
@@ -92,6 +93,16 @@ public:
 
         return true;
     }
+    constexpr mat2<T> operator^(const uint64_t k) const {
+        mat2<T> ans = identity();
+
+        for (int i = 0; i < k; i++) {
+            ans = ans * (*this);
+        }
+
+        return ans;
+    }
+
 
     static constexpr mat2<T> identity() {
         return {
@@ -113,29 +124,29 @@ public:
     }
 
 
-
-
-    constexpr T magnitude() {
+    constexpr T magnitude() const {
         mat2<T> ans = *this;
         return ans(1, 1)*ans(2, 2) - ans(1, 2)*ans(2, 1);
     }
-    bool is_singular() {
+    bool is_singular() const {
         if (magnitude() == 0) {
             return true;
         }
         return false;
     }
-    void transpose() {
+    mat2<T> transpose() const {
         mat2<T> k = *this;
 
-        rows[1].x = k(1, 2);
-        rows[0].y = k(2, 1);
+        k.rows[1].x = k(1, 2);
+        k.rows[0].y = k(2, 1);
+
+        return k;
     }
-    constexpr T trace() {
+    constexpr T trace() const {
         mat2<T> m = *this;
         return m(1, 1)+m(2, 2);
     }
-    constexpr bool is_identity() {
+    constexpr bool is_identity() const {
         mat2<T> m = *this;
         mat2<T> I = identity();
 
@@ -144,7 +155,7 @@ public:
         }
         return false;
     }
-    constexpr bool is_symmetric() {
+    constexpr bool is_symmetric() const {
         mat2<T> m = *this;
 
         if (m == m.transpose()) {
@@ -152,7 +163,7 @@ public:
         }
         return false;
     }
-    constexpr bool is_skew_symmetric() {
+    constexpr bool is_skew_symmetric() const {
         mat2<T> m = *this;
 
         if (m == (-1*m.transpose())) {
