@@ -74,6 +74,35 @@ public:
 
         return ans;
     }
+    constexpr bool operator==(const mat3<T>& other) const {
+        mat3<T> m = *this;
+
+        if (
+            m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) && m(1, 3) == other(1, 3) &&
+            m(2, 1) == other(2, 1) && m(2, 2) == other(2, 2) && m(2, 3) == other(2, 3) &&
+            m(3, 1) == other(3, 1) && m(3, 2) == other(3, 2) && m(3, 3) == other(3, 3)
+        ) {
+
+        return true;
+    }
+
+        return false;
+    }
+    constexpr bool operator!=(const mat3<T>& other) const {
+        mat3<T> m = *this;
+
+        if (
+            m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) && m(1, 3) == other(1, 3) &&
+            m(2, 1) == other(2, 1) && m(2, 2) == other(2, 2) && m(2, 3) == other(2, 3) &&
+            m(3, 1) == other(3, 1) && m(3, 2) == other(3, 2) && m(3, 3) == other(3, 3)
+        ) {
+
+        return false;
+    }
+
+        return true;
+    }
+
 
     static constexpr mat3<T> identity() {
         return {
@@ -119,6 +148,36 @@ public:
         (*this)(3, 3) = k;
 
         return;
+    }
+    constexpr mat3<T> transpose() const {
+        mat3<T> k = *this;
+
+        k.rows[0].y = (*this)(2, 1);
+        k.rows[0].z = (*this)(3, 1);
+
+        k.rows[1].x = (*this)(1, 2);
+        k.rows[1].z = (*this)(3, 2);
+
+        k.rows[2].x = (*this)(1, 3);
+        k.rows[2].y = (*this)(2, 3);
+
+        return k;
+    }
+    constexpr bool is_symmetric() const {
+        mat3<T> m = *this;
+        if (m.transpose() == (*this)) {
+            return true;
+        }
+
+        return false;
+    }
+    constexpr bool is_skew_symmetric() const {
+        mat3<T> m = *this;
+        if (-1*m.transpose() == m) {
+            return true;
+        }
+        
+        return false;
     }
 
 };
