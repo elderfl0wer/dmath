@@ -5,7 +5,7 @@
 #include "../../include/dmath/matrix/matrix2.hpp"
 
 template<std::floating_point T>
-mat2<T> minor(mat2<T>& m) 
+mat2<T> minor(const mat2<T>& m) 
 {
     mat2<T> ans;
     ans(1, 1) = m(2, 2);
@@ -17,7 +17,7 @@ mat2<T> minor(mat2<T>& m)
 }
 
 template<std::floating_point T>
-mat2<T> cofactor(mat2<T>& m)
+mat2<T> cofactor(const mat2<T>& m)
 {
     mat2<T> ans = minor(m);
     ans(1, 2) *= -1;
@@ -27,7 +27,7 @@ mat2<T> cofactor(mat2<T>& m)
 }
 
 template<std::floating_point T>
-mat2<T> adjacent(mat2<T>& m)
+mat2<T> adjacent(const mat2<T>& m)
 {
     mat2<T> ans = cofactor(m);
     
@@ -35,11 +35,11 @@ mat2<T> adjacent(mat2<T>& m)
 }
 
 template<std::floating_point T>
-mat2<T> inverse(mat2<T>& m)
+mat2<T> inverse(const mat2<T>& m)
 {
     if (m.is_singular()) {
         throw std::out_of_range("matrix is uninversable");
     }
 
-    return m.adjacent / m.magnitude();
+    return adjacent(m) / m.magnitude();
 }
