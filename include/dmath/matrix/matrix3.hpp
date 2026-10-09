@@ -43,6 +43,31 @@ public:
 
         return ans;
     }
+    constexpr mat3<T> operator-(const mat3<T>& other) const {
+        mat3<T> ans = *this;
+        ans(1, 1) -= other(1, 1); ans(1, 2) -= other(1, 2); ans(1, 3) -= other(1, 3);
+        ans(2, 1) -= other(2, 1); ans(2, 2) -= other(2, 2); ans(2, 3) -= other(2, 3);
+        ans(3, 1) -= other(3, 1); ans(3, 2) -= other(3, 2); ans(3, 3) -= other(3, 3);
+
+        return ans;
+    }
+    constexpr mat3<T> operator-(const T k) const {
+        mat3<T> ans = *this;
+        ans(1, 1) -= k; ans(1, 2) -= k; ans(1, 3) -= k;
+        ans(2, 1) -= k; ans(2, 2) -= k; ans(2, 3) -= k;
+        ans(3, 1) -= k; ans(3, 2) -= k; ans(3, 3) -= k;
+
+        return ans;
+    }
+    constexpr mat3<T> operator*(const T k) const {
+        mat3<T> ans = *this;
+        ans(1, 1) *= k; ans(1, 2) *= k; ans(1, 3) *= k;
+        ans(2, 1) *= k; ans(2, 2) *= k; ans(2, 3) *= k;
+        ans(3, 1) *= k; ans(3, 2) *= k; ans(3, 3) *= k;
+
+        return ans;
+    }
+
 
 };
 
