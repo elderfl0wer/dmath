@@ -71,6 +71,12 @@ public:
 
         return ans;
     }
+    constexpr mat2<T> operator=(const mat2<T>& other) const {
+        rows[0] = other.rows[0];
+        rows[1] = other.rows[1];
+
+        return *this;
+    }
     constexpr bool operator==(const mat2<T>& other) const {
         mat2<T> m = *this;
         if (

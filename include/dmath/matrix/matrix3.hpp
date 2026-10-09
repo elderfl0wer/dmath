@@ -59,6 +59,13 @@ public:
 
         return ans;
     }
+    constexpr mat3<T> operator=(const mat3<T>& other) const {
+        rows[0] = other.rows[0];
+        rows[1] = other.rows[1];
+        rows[2] = other.rows[2];
+
+        return *this;
+    }
     constexpr mat3<T> operator*(const T k) const {
         mat3<T> ans = *this;
         ans(1, 1) *= k; ans(1, 2) *= k; ans(1, 3) *= k;
