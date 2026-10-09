@@ -171,6 +171,14 @@ public:
         }
         return false;
     }
+    constexpr void fill(const T k) const {
+        (*this)(1, 1) = k;
+        (*this)(1, 2) = k;
+        (*this)(2, 1) = k;
+        (*this)(2, 2) = k;
+
+        return;
+    }
 
 };
 

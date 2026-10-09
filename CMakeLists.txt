@@ -36,6 +36,8 @@ else()
         -Wall
         -Wextra
         -Wpedantic
+        -02
+        -flto
     )
 endif()
 
