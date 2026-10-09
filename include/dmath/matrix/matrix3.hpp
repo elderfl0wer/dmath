@@ -68,7 +68,24 @@ public:
         return ans;
     }
 
+    
+    constexpr T magnitude() const {
+        mat3<T> ans = *this;
+     
+        return ans(1, 1)*(ans(2, 2)*ans(3, 3)-ans(2, 3)*ans(3, 2)) - ans(1, 2)*(ans(2, 1)*ans(3, 3)-ans(2, 3)*ans(3, 1) + ans(1, 3)*(ans(2, 1)*ans(3, 2)- ans(2, 2)*ans(3, 1)));
+    }
+    constexpr bool is_singular() const {
+        if ((*this).magnitude() == 0) {
+            return true;
+        }
 
+        return false;
+    }
+    constexpr T trace() const {
+        mat3<T> k = *this;
+
+        return k(1, 1)+k(2, 2)+k(3, 3);
+    }
 };
 
 #endif /* MATRIX3_HPP */
