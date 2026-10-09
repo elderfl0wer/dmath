@@ -100,6 +100,20 @@ public:
 
         return k(1, 1)+k(2, 2)+k(3, 3);
     }
+    constexpr void fill(const T k) const {
+        (*this)(1, 1) = k;
+        (*this)(1, 2) = k;
+        (*this)(1, 3) = k;
+        (*this)(2, 1) = k;
+        (*this)(2, 2) = k;
+        (*this)(2, 3) = k;
+        (*this)(3, 1) = k;
+        (*this)(3, 2) = k;
+        (*this)(3, 3) = k;
+
+        return;
+    }
+
 };
 
 #endif /* MATRIX3_HPP */
