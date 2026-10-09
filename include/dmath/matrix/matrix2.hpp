@@ -193,13 +193,13 @@ using mat2f = mat2<float>;
 using mat2d = mat2<double>;
 
 template<std::floating_point T>
-mat2<T> minor(mat2<T>& m);
+mat2<T> minor(const mat2<T>& m);
 template<std::floating_point T>
-mat2<T> cofactor(mat2<T>& m);
+mat2<T> cofactor(const mat2<T>& m);
 template<std::floating_point T>
-mat2<T> adjacent(mat2<T>& m);
+mat2<T> adjacent(const mat2<T>& m);
 template<std::floating_point T>
-mat2<T> inverse(mat2<T>& m);
+mat2<T> inverse(const mat2<T>& m);
 
 #endif /* MATRIX2_CPP */
 

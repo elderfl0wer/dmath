@@ -190,4 +190,16 @@ public:
 
 };
 
+using mat3f = mat3<float>;
+using mat3d = mat3<double>; 
+
+template<std::floating_point T>
+T minor(const mat3<T>& m, std::size_t row, std::size_t col);
+template<std::floating_point T>
+mat3<T> cofactor(const mat3<T>& m);
+template<std::floating_point T>
+mat3<T> adjacent(const mat3<T>& m);
+template<std::floating_point T>
+mat3<T> inverse(const mat3<T>& m);
+
 #endif /* MATRIX3_HPP */
