@@ -179,6 +179,14 @@ public:
         
         return false;
     }
+    constexpr bool is_identity() const {
+        mat3<T> m = identity();
+        if ((*this) == m) {
+            return true;
+        }
+
+        return false;
+    }
 
 };
 
