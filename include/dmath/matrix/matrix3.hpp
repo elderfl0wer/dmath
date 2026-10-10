@@ -76,6 +76,23 @@ public:
 
         return ans;
     }
+    constexpr vec3<T> operator*(const vec3<T>& other) const {
+    vec3<T> v;
+
+    v.x = other.x * (*this)(1, 1)
+        + other.y * (*this)(2, 1)
+        + other.z * (*this)(3, 1);
+
+    v.y = other.x * (*this)(1, 2)
+        + other.y * (*this)(2, 2)
+        + other.z * (*this)(3, 2);
+
+    v.z = other.x * (*this)(1, 3)
+        + other.y * (*this)(2, 3)
+        + other.z * (*this)(3, 3);
+
+    return v;
+    }
     constexpr bool operator==(const mat3<T>& other) const {
         mat3<T> m = *this;
 

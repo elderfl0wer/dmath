@@ -73,6 +73,13 @@ public:
 
         return ans;
     }
+    constexpr vec2<T> operator*(const vec2<T>& other) const {
+        vec2<T> v;
+        v.x = other.x*(*this)(1, 1) + other.y*(*this)(2, 1);
+        v.y = other.x*(*this)(1, 2) + other.y*(*this)(2, 2);
+
+        return v;
+    }
     constexpr mat2<T> operator=(const mat2<T>& other) const {
         rows[0] = other.rows[0];
         rows[1] = other.rows[1];
