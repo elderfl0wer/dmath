@@ -68,3 +68,9 @@ vec3<T> lerp(vec3<T>& a, vec3<T>& b, const T t)
 {
     return a + t*(b-a);
 }
+
+template<std::floating_point T>
+vec2<T> to_vec2(vec3<T>& k)
+{
+    return {k.x, k.y};
+}

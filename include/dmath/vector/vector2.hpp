@@ -33,6 +33,14 @@ public:
 		return;
 	}
 
+    static constexpr vec2<T> unit_x() {
+        return {1, 0};
+    }
+    static constexpr vec2<T> unit_y() {
+        return {0, 1};
+    }
+
+
 	vec2<T> operator+ (const vec2& other) {
 		return { x + other.x, y + other.y };
 	}
@@ -65,5 +73,7 @@ template<std::floating_point T>
 vec2<T> rotate(vec2<T>& v, const double angle);
 template<std::floating_point T>
 vec2<T> lerp(vec2<T>& a, vec2<T>& b, const T t);
+template<std::floating_point T>
+vec3<T> to_vec3(vec2<T> k, const T z);
 
 #endif // !VECTOR2_HPP

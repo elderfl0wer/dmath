@@ -40,6 +40,17 @@ public:
 		z = k1->z + k2 > z + k3->z;
 	}
 
+    static constexpr vec3<T> unit_x() {
+        return {1.0f, 0, 0};
+    }
+    static constexpr vec3<T> unit_y() {
+        return {0, 1.0f, 0};
+    }
+    static constexpr vec3<T> unit_z() {
+        return {0, 0, 1.0f};
+    }
+
+
 	vec3<T> operator+ (const vec3<T>& other) {
 		return { x + other.x, y + other.y, z + other.z };
 	}
@@ -72,5 +83,7 @@ template<std::floating_point T>
 vec3<T> reflection(vec3<T>& v);
 template<std::floating_point T>
 vec3<T> lerp(vec3<T>& a, vec3<T>& b, const T t);
+template<std::floating_point T>
+vec3<T> to_vec2(vec3<T> k);
 
 #endif // !VECTOR3_HPP
