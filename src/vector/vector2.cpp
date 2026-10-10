@@ -3,6 +3,8 @@
 
 #include "../../include/dmath/dmath.hpp"
 
+using namespace dmath;
+
 template<std::floating_point T>
 T dot(vec2<T>& a, vec2<T>& b)
 {

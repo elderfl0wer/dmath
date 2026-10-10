@@ -4,6 +4,8 @@
 
 #include "../../include/dmath/matrix/matrix2.hpp"
 
+using namespace dmath;
+
 template<std::floating_point T>
 mat2<T> minor(const mat2<T>& m) 
 {

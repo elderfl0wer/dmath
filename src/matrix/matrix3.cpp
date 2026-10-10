@@ -5,6 +5,7 @@
 #include "../../include/dmath/matrix/matrix3.hpp"
 #include "../../include/dmath/matrix/matrix2.hpp"
 
+using namespace dmath;
 
 template<std::floating_point T>
 T minor(const mat3<T>& m, std::size_t row, std::size_t col)
