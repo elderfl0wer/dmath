@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # dmath
 Library that provides math structures and operations on them in C++23.
 
@@ -50,5 +47,3 @@ int main() {
 
     return 0;
 }
-```
->>>>>>> a88b9ce05dde5a28e754dc203376b286f316af8e
