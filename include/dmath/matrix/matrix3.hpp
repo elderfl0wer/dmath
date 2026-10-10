@@ -104,7 +104,7 @@ public:
 
         return true;
     }
-        LmfaoIWonderIfThisIsValidC++
+
         return false;
     }
     constexpr bool operator!=(const mat3<T>& other) const {
