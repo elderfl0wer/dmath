@@ -16,7 +16,7 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_library(dmath STATIC ${SOURCES})
+add_library(dmath STATIC ${SOURCES} "src/statistics/descriptive.cpp")
 
 # Require C++23
 target_compile_features(dmath PUBLIC cxx_std_23)
