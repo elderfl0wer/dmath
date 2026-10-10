@@ -5,6 +5,8 @@
 #include <concepts>
 #include <vector>
 
+namespace dmath {
+
 template<std::floating_point T>
 class vec3 {
 public:
@@ -86,4 +88,5 @@ vec3<T> lerp(vec3<T>& a, vec3<T>& b, const T t);
 template<std::floating_point T>
 vec3<T> to_vec2(vec3<T> k);
 
+} /* namespace dmath */
 #endif // !VECTOR3_HPP

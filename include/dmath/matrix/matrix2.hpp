@@ -9,6 +9,8 @@
 
 #include "../vector/vector2.hpp"
 
+namespace dmath {
+
 template<std::floating_point T>
 class mat2 {
 public:
@@ -201,5 +203,6 @@ mat2<T> adjacent(const mat2<T>& m);
 template<std::floating_point T>
 mat2<T> inverse(const mat2<T>& m);
 
+} /* namespace dmath */
 #endif /* MATRIX2_CPP */
 
