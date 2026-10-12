@@ -11,12 +11,12 @@ project(
 # Library
 # ==============================================================================
 
-# Collect all source files
+# Collect all source files recursively from src/ (matrix, statistics, vector)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_library(dmath STATIC ${SOURCES} "src/statistics/descriptive.cpp")
+add_library(dmath STATIC ${SOURCES})
 
 # Require C++23
 target_compile_features(dmath PUBLIC cxx_std_23)
@@ -36,7 +36,7 @@ else()
         -Wall
         -Wextra
         -Wpedantic
-        -02
+        -O2
         -flto
     )
 endif()
