@@ -1,6 +1,7 @@
 #ifndef VECTOR3_HPP
 #define VECTOR3_HPP
 
+#include <array>
 #include <cmath>
 #include <concepts>
 #include <vector>
@@ -12,23 +13,23 @@ class vec3 {
 public:
 	T x, y, z;
 
-	T length() {
+	constexpr T length() const {
 		return std::sqrt(x * x + y * y + z * z);
 	}
-	vec3<T> normalized() {
+	constexpr vec3<T> normalized() const {
 		const double factor{ 1 / std::sqrt(x * x + y * y + z * z) };
 		return { x * factor, y * factor, z*factor};
 	}
-	void scale(const T factor) {
+	constexpr void scale(const T factor) {
 		x *= factor;
 		y *= factor;
 		z *= factor;
 		return;
 	}
-	std::vector<T> dircos() {
+	constexpr std::array<T, 2> dircos() const {
 		return { x / length(), y / length(), z / length()};
 	}
-	void rotate(const vec3<T>& other, const T angle) {
+	constexpr void rotate(const vec3<T>& other, const T angle) {
 		vec3<T> k = other.normalized();
 
 		vec3<T> v{ x, y, z };
@@ -53,13 +54,13 @@ public:
     }
 
 
-	vec3<T> operator+ (const vec3<T>& other) {
+	constexpr vec3<T> operator+(const vec3<T>& other) const {
 		return { x + other.x, y + other.y, z + other.z };
 	}
-	vec3<T> operator- (const vec3<T>& other) {
+	constexpr vec3<T> operator-(const vec3<T>& other) const {
 		return { x - other.x, y - other.y, z - other.z };
 	}
-	vec3<T> operator* (const T factor) {
+	constexpr vec3<T> operator*(const T factor) const {
 		return { x * factor, y * factor, z * factor };
 	}
 };
