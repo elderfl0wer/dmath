@@ -13,7 +13,7 @@ template<std::floating_point T, std::size_t N>
 class vec {
 public:
     std::array<T, N> data;
-    // vector<double, 4> v = {1, 2, 3, 4};
+    // vec<double, 4> v = {1, 2, 3, 4};
 
     constexpr T& operator()(std::size_t i) {
         if (i < 1 || i > N)
@@ -28,6 +28,8 @@ public:
 
         return data[i - 1];
     }
+    constexpr bool operator==(const vec&) const = default;
+    // C++20 generates `!=` operator automatically inferred from `==`
 };
 }
 
