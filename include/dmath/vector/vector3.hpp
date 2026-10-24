@@ -63,6 +63,13 @@ public:
 	constexpr vec3<T> operator*(const T factor) const {
 		return { x * factor, y * factor, z * factor };
 	}
+	constexpr bool operator==(const vec3& other) const {
+		if ((*this).x == other.x && (*this).y == other.y && (*this).z == other.z) {
+			return true;
+		}
+		return false;
+	}
+	constexpr auto operator<=>(const vec3& other) const = default;
 };
 
 using vec3f = vec3<float>;

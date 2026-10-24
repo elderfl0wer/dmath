@@ -80,12 +80,7 @@ public:
 
         return v;
     }
-    constexpr mat2<T> operator=(const mat2<T>& other) const {
-        rows[0] = other.rows[0];
-        rows[1] = other.rows[1];
-
-        return *this;
-    }
+    constexpr mat2<T> operator<=>(const mat2<T>& other) const = default;
     constexpr bool operator==(const mat2<T>& other) const {
         mat2<T> m = *this;
         if (
@@ -96,17 +91,6 @@ public:
         }
 
         return false;
-    }
-    constexpr bool operator!=(const mat2<T>& other) const {
-        mat2<T> m = *this;
-        if (
-                m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) &&
-                m(2, 1) == other(2, 1) && m(2, 2) == other(2, 2)
-           ) {
-            return false;
-        }
-
-        return true;
     }
     constexpr mat2<T> operator^(const uint64_t k) const {
         mat2<T> ans = identity();

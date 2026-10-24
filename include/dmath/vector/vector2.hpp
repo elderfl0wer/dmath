@@ -52,6 +52,13 @@ public:
 	constexpr vec2<T> operator* (const T factor) const {
 		return { x * factor, y * factor };
 	}
+	constexpr bool operator==(const vec2& other) const {
+		if ((*this).x == other.x && (*this).y == other.y) {
+			return true;
+		}
+		return false;
+	}
+	constexpr auto operator<=>(const vec2& other) const = default;
 };
 
 using vec2f = vec2<float>;

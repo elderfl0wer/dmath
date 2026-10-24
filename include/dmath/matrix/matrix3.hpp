@@ -61,13 +61,7 @@ public:
 
         return ans;
     }
-    constexpr mat3<T> operator=(const mat3<T>& other) const {
-        rows[0] = other.rows[0];
-        rows[1] = other.rows[1];
-        rows[2] = other.rows[2];
-
-        return *this;
-    }
+    constexpr mat3<T> operator<=>(const mat3<T>& other) const = default;
     constexpr mat3<T> operator*(const T k) const {
         mat3<T> ans = *this;
         ans(1, 1) *= k; ans(1, 2) *= k; ans(1, 3) *= k;
@@ -106,20 +100,6 @@ public:
     }
 
         return false;
-    }
-    constexpr bool operator!=(const mat3<T>& other) const {
-        mat3<T> m = *this;
-
-        if (
-            m(1, 1) == other(1, 1) && m(1, 2) == other(1, 2) && m(1, 3) == other(1, 3) &&
-            m(2, 1) == other(2, 1) && m(2, 2) == other(2, 2) && m(2, 3) == other(2, 3) &&
-            m(3, 1) == other(3, 1) && m(3, 2) == other(3, 2) && m(3, 3) == other(3, 3)
-        ) {
-
-        return false;
-    }
-
-        return true;
     }
 
 

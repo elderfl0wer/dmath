@@ -51,6 +51,7 @@ public:
         }
         return ans;
     }
+    constexpr auto operator<=>(const vec& other) const = default;
 
 
     constexpr double magnitude() const {

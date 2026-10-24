@@ -192,4 +192,3 @@ constexpr auto distribution_range(const R& r) {
     }
     return hi - lo;
 }
-
