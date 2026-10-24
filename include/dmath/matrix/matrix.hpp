@@ -27,7 +27,7 @@ public:
         }
         return true;
     }
-    constexpr auto operator<=>(const matrix& other) const = default;
+    constexpr auto operator<=>(const matrix<T, Rows, Columns>& other) const = default;
 
 
     constexpr void fill(const T k) {
