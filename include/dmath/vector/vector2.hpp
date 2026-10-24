@@ -14,22 +14,22 @@ class vec2 {
 public:
 	T x, y;
 
-	T length() {
+	constexpr T length() const {
 		return std::sqrt(x * x + y * y);
 	}
-	vec2<T> normalized() {
+	constexpr vec2<T> normalized() {
 		const double factor{ 1 / std::sqrt(x * x + y * y) };
 		return { x * factor, y * factor };
 	}
-	void scale(const T factor) {
+	constexpr void scale(const T factor) {
 		x *= factor;
 		y *= factor;
 		return;
 	}
-	std::vector<T> dircos() {
+	constexpr std::array<T, 2> dircos() const {
 		return { x / length(), y / length() };
 	}
-	void rotate(const T angle) {
+	constexpr void rotate(const T angle) {
 		x = x * cos(angle) - y * sin(angle);
 		y = x * sin(angle) + y * cos(angle);
 		return;
@@ -43,13 +43,13 @@ public:
     }
 
 
-	vec2<T> operator+ (const vec2& other) {
+	constexpr vec2<T> operator+(const vec2& other) const {
 		return { x + other.x, y + other.y };
 	}
-	vec2<T> operator- (const vec2& other) {
+	constexpr vec2<T> operator-(const vec2& other) const {
 		return { x - other.x, y - other.y };
 	}
-	vec2<T> operator* (const T factor) {
+	constexpr vec2<T> operator* (const T factor) const {
 		return { x * factor, y * factor };
 	}
 };
