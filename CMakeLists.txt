@@ -15,26 +15,36 @@ file(GLOB_RECURSE DMATH_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_library(dmath STATIC ${DMATH_SOURCES})
+if(DMATH_SOURCES)
+    add_library(dmath STATIC ${DMATH_SOURCES})
+else()
+    add_library(dmath INTERFACE)
+endif()
 
-target_compile_features(dmath PUBLIC cxx_std_23)
+target_compile_features(dmath INTERFACE cxx_std_23)
 
 target_include_directories(dmath
-    PUBLIC
+    INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
 
-if(MSVC)
-    target_compile_options(dmath PRIVATE /W4)
-else()
-    target_compile_options(dmath PRIVATE
-        -Wall
-        -Wextra
-        -Wpedantic
-        -O2
-        -flto
-    )
+
+# Compiler warnings/options
+if(DMATH_SOURCES)
+
+    if(MSVC)
+        target_compile_options(dmath PRIVATE /W4)
+    else()
+        target_compile_options(dmath PRIVATE
+            -Wall
+            -Wextra
+            -Wpedantic
+            -O2
+            -flto
+        )
+    endif()
+
 endif()
 
 
@@ -54,7 +64,6 @@ if(BUILD_TESTS)
 
     foreach(TEST_FILE ${TEST_FILES})
 
-        # Get filename without extension
         get_filename_component(TEST_NAME ${TEST_FILE} NAME_WE)
 
         add_executable(${TEST_NAME}
@@ -70,7 +79,6 @@ if(BUILD_TESTS)
             COMMAND ${TEST_NAME}
         )
 
-        # Put tests into build/tests/
         set_target_properties(${TEST_NAME}
             PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY
@@ -86,8 +94,12 @@ endif()
 # Output directories
 # ==============================================================================
 
-set_target_properties(dmath
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY
-    "${CMAKE_BINARY_DIR}/bin"
-)
+if(TARGET dmath)
+
+    set_target_properties(dmath
+        PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY
+        "${CMAKE_BINARY_DIR}/bin"
+    )
+
+endif()

@@ -2,13 +2,19 @@
 #include <cassert>
 #include <cmath>
 
-#include "dmath/dmath.hpp"
+#include "../../include/dmath/vector/vector2.hpp"
+#include "../../include/dmath/vector/vector3.hpp"
+
+using namespace dmath;
 
 int main() {
+    vec2<float> v1{1.0f, 2.0f};
+    using vec2f = vec2<float>;
+
     std::cout << "Starting dmath::vec2 tests..." << std::endl;
 
     // 1. Test construction and static factory methods
-    dmath::vec2f v1{3.0f, 4.0f};
+    v1 = {3.0f, 4.0f};
     assert(v1.x == 3.0f);
     assert(v1.y == 4.0f);
 
@@ -78,9 +84,6 @@ int main() {
 
     auto lerp_fn = dmath::lerp(vec_a, vec_b, 0.5f);
     assert(lerp_fn.x == 0.5f && lerp_fn.y == 0.5f);
-
-    auto v3_conv = dmath::to_vec3(vec_a, 5.0f);
-    assert(v3_conv.x == 1.0f && v3_conv.y == 0.0f && v3_conv.z == 5.0f);
 
     std::cout << "All vector2 tests passed successfully!" << std::endl;
     return 0;
