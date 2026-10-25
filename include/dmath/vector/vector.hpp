@@ -4,7 +4,6 @@
 #include <array>
 #include <cmath>
 #include <concepts>
-#include <cstddef>
 #include <stdexcept>
 
 namespace dmath {
@@ -54,6 +53,7 @@ public:
     constexpr auto operator<=>(const vec<T, N>& other) const = default;
 
 
+    [[nodiscard]]
     constexpr double magnitude() const {
         double sum{};
         for (size_t i = 0; i <= N; i++) {

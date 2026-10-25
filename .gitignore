@@ -4,3 +4,5 @@ out/
 .git/
 build/
 *.zip
+cmake-build-debug-visual-studio-+-clang/
+.idea/
