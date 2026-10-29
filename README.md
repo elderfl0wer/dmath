@@ -6,8 +6,8 @@ It is very much WIP.
 The informal goal is to make an API that is simple from a maths perspective. Documentation on it will be done when I'm done soon.
 ## Requirements
 - C++23 compiler
-- CMake
 
+`dmath` is header-only.
 ## Example
 ```cpp
 #include <iostream>
@@ -15,7 +15,8 @@ The informal goal is to make an API that is simple from a maths perspective. Doc
 
 #include <dmath/dmath.hpp>
 
-int main() {
+int main() 
+{
     // 1. Initialize a 2D position vector using vec2f
     vec2f position{3.0f, 4.0f};
     std::cout << "Initial Position: (" << position.x << ", " << position.y << ")\n";
