@@ -1,4 +1,3 @@
-#include <cmath>
 #include <concepts>
 #include <cstddef>
 

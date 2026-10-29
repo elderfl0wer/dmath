@@ -1,13 +1,10 @@
 #ifndef MATRIX3_HPP
 #define MATRIX3_HPP
 
-#include <cmath>
 #include <concepts>
 #include <cstddef>
-#include <cstdint>
 #include <stdexcept>
 
-#include "../vector/vector2.hpp"
 #include "../matrix/matrix2.hpp"
 
 namespace dmath {
