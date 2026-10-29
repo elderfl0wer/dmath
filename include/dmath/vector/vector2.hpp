@@ -48,7 +48,7 @@ public:
 	constexpr vec2<T> operator-(const vec2& other) const {
 		return { x - other.x, y - other.y };
 	}
-	constexpr vec2<T> operator* (const T factor) const {
+	constexpr vec2<T> operator*(const T factor) const {
 		return { x * factor, y * factor };
 	}
 	constexpr bool operator==(const vec2& other) const {
@@ -60,15 +60,12 @@ public:
 	constexpr auto operator<=>(const vec2& other) const = default;
 };
 
-using vec2f = vec2<float>;
-using vec2d = vec2<double>;
-
 using namespace dmath;
 
 template<std::floating_point T>
 T dot(vec2<T>& a, vec2<T>& b)
 {
-	return a->x * b->x + a->y * b->y;
+	return a.x * b.x + a.y * b.y;
 }
 
 template<std::floating_point T>
@@ -81,20 +78,20 @@ T distance(vec2<T>& a, vec2<T>& b)
 template<std::floating_point T>
 T mutual_angle(vec2<T>& a, vec2<T>& b)
 {
-	return acos(dot<T>(a, b) / (a->length() * b->length()));
+	return acos(dot<T>(a, b) / (a.length() * b.length()));
 }
 
 template<std::floating_point T>
 vec3<T> cross(vec2<T>& a, vec2<T>& b)
 {
-	return { 0, 0, a->xb->y - a->y * b->x };
+	return { 0, 0, a.x * b.y - a.y * b.x };
 }
 
 template<std::floating_point T>
 vec2<T> project(vec2<T>& a, vec2<T>& b)
 {
 	T k1 = dot<T>(a, b);
-	T k2 = std::pow(b->length(), 2);
+	T k2 = std::pow(b.length(), 2);
 
 	return b * (k1 / k2);
 }
@@ -109,21 +106,21 @@ vec2<T> orthogonal(vec2<T>& a, vec2<T>& b)
 template<std::floating_point T>
 vec2<T> reflection(vec2<T>& v)
 {
-	vec2<T> n = v->normalized;
+	vec2<T> n = v.normalized();
 	
-	return v - (2 * (dot<T>(v, n))) * n;
+	return v - n*(2 * (dot<T>(v, n)));
 }
 
 template<std::floating_point T>
 vec2<T> rotate(vec2<T>& v, const T angle)
 {
-	return { v->x * cos(angle) - v->y * sin(angle), v->x * sin(angle) + v->y * cos(angle) };
+	return { v.x * cos(angle) - v.y * sin(angle), v.x * sin(angle) + v.y * cos(angle) };
 }
 
 template<std::floating_point T>
 vec2<T> lerp(vec2<T>& a, vec2<T>& b, const T t)
 {
-    return a + t*(b-a);
+    return a + (b-a)*t;
 }
 
 
