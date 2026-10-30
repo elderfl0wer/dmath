@@ -1,7 +1,8 @@
-import os
 import shutil
 import sys
+import zipfile
 from pathlib import Path
+
 
 def main():
     version = input("Enter release version (e.g., 1.0.0): ").strip()
@@ -13,37 +14,47 @@ def main():
     release_name = f"{project_name}-v{version}-universal"
     release_dir = Path(release_name)
 
-    # 1. Create release folder structure
+    # 1. Create temporary release folder
     if release_dir.exists():
         shutil.rmtree(release_dir)
-    
+
     release_dir.mkdir(parents=True)
 
-    # 2. Copy 'include' folder
+    # 2. Copy include directory
     print("[*] Copying include directory...")
-    root_include = Path("include")
-    if root_include.exists():
-        shutil.copytree(root_include, release_dir / "include")
+    include_dir = Path("include")
+    if include_dir.exists():
+        shutil.copytree(include_dir, release_dir / "include")
         print("    Copied: include/")
     else:
-        print("[!] Warning: 'include' directory not found in root.")
+        print("[!] Warning: 'include' directory not found.")
 
-    # 3. Copy README and LICENSE
+    # 3. Copy documentation
     print("[*] Copying documentation...")
-    for doc in ["README.md", "LICENSE"]:
-        doc_path = Path(doc)
-        if doc_path.exists():
-            shutil.copy(doc_path, release_dir)
+    for doc in ("README.md", "LICENSE"):
+        path = Path(doc)
+        if path.exists():
+            shutil.copy2(path, release_dir)
             print(f"    Copied: {doc}")
         else:
-            print(f"[!] Warning: '{doc}' not found in root.")
+            print(f"[!] Warning: '{doc}' not found.")
 
-    # 4. Zip the release folder and clean up raw directory
-    print(f"[*] Packaging into {release_name}.zip...")
-    shutil.make_archive(release_name, 'zip', root_dir='.', base_dir=release_name)
+    # 4. Create ZIP containing only the contents of release_dir
+    zip_path = Path(f"{release_name}.zip")
+    print(f"[*] Packaging into {zip_path.name}...")
+
+    if zip_path.exists():
+        zip_path.unlink()
+
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for path in release_dir.rglob("*"):
+            archive.write(path, path.relative_to(release_dir))
+
+    # 5. Remove temporary release directory
     shutil.rmtree(release_dir)
 
-    print(f"\n[+] Success! Created {release_name}.zip")
+    print(f"\n[+] Success! Created {zip_path.name}")
+
 
 if __name__ == "__main__":
     main()
