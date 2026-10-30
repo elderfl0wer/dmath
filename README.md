@@ -1,13 +1,14 @@
 # dmath
 Library that provides math structures and operations on them in C++23.
 
+`dmath` is header-only & heavily templated so you can compose your own maths structures easily.
+
 It is very much WIP. 
 
 The informal goal is to make an API that is simple from a maths perspective. Documentation on it will be done when I'm done soon.
 ## Requirements
 - C++23 compiler
 
-`dmath` is header-only.
 ## Example
 ```cpp
 #include <iostream>
