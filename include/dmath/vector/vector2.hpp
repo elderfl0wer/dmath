@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <concepts>
+#include <array>
 
 #include "vector3.hpp"
 
@@ -16,7 +17,7 @@ public:
 	constexpr T length() const {
 		return std::sqrt(x * x + y * y);
 	}
-	constexpr vec2<T> normalized() {
+	constexpr vec2<T> normalized() const {
 		const T factor{ 1 / std::sqrt(x * x + y * y) };
 		return { x * factor, y * factor };
 	}
@@ -29,8 +30,9 @@ public:
 		return { x / length(), y / length() };
 	}
 	constexpr void rotate(const T angle) {
+        T tx = x;
 		x = x * cos(angle) - y * sin(angle);
-		y = x * sin(angle) + y * cos(angle);
+		y = tx * sin(angle) + y * cos(angle);
 		return;
 	}
 

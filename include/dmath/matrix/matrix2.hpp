@@ -1,5 +1,5 @@
-#ifndef MATRIX2_CPP
-#define MATRIX2_CPP
+#ifndef MATRIX2_HPP
+#define MATRIX2_HPP
 
 #include <cmath>
 #include <concepts>
@@ -20,6 +20,15 @@ public:
         return rows[i];
     }
     constexpr T& operator()(std::size_t row, std::size_t col) {
+        if (row < 1 || row > 2 || col < 1 || col > 2) {
+        throw std::out_of_range("index out of range");
+        }
+
+        return col == 1
+            ? rows[row-1].x
+            : rows[row-1].y;
+    }
+    constexpr const T& operator()(std::size_t row, std::size_t col) const {
         if (row < 1 || row > 2 || col < 1 || col > 2) {
         throw std::out_of_range("index out of range");
         }
@@ -80,7 +89,7 @@ public:
 
         return v;
     }
-    constexpr mat2<T> operator<=>(const mat2<T>& other) const = default;
+    constexpr auto operator<=>(const mat2<T>& other) const = default;
     constexpr bool operator==(const mat2<T>& other) const {
         mat2<T> m = *this;
         if (
@@ -95,7 +104,7 @@ public:
     constexpr mat2<T> operator^(const uint64_t k) const {
         mat2<T> ans = identity();
 
-        for (int i = 0; i < k; i++) {
+        for (uint64_t i = 0; i < k; i++) {
             ans = ans * (*this);
         }
 
@@ -170,7 +179,7 @@ public:
         }
         return false;
     }
-    constexpr void fill(const T k) const {
+    constexpr void fill(const T k) {
         (*this)(1, 1) = k;
         (*this)(1, 2) = k;
         (*this)(2, 1) = k;
@@ -181,14 +190,11 @@ public:
 
 };
 
-// using mat2i = mat2<int>;
 using mat2f = mat2<float>;
 using mat2d = mat2<double>;
 
-using namespace dmath;
-
 template<std::floating_point T>
-mat2<T> minor(const mat2<T>& m) 
+mat2<T> minor_matrix(const mat2<T>& m) 
 {
     mat2<T> ans;
     ans(1, 1) = m(2, 2);
@@ -202,7 +208,7 @@ mat2<T> minor(const mat2<T>& m)
 template<std::floating_point T>
 mat2<T> cofactor(const mat2<T>& m)
 {
-    mat2<T> ans = minor(m);
+    mat2<T> ans = minor_matrix(m);
     ans(1, 2) *= -1;
     ans(2, 1) *= -1;
 
@@ -224,10 +230,9 @@ mat2<T> inverse(const mat2<T>& m)
         throw std::out_of_range("matrix is uninversable");
     }
 
-    return adjacent(m) / m.magnitude();
+    return adjacent(m) * (1 / m.magnitude());
 }
 
 
 } /* namespace dmath */
-#endif /* MATRIX2_CPP */
-
+#endif /* MATRIX2_HPP */

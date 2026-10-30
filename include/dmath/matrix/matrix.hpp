@@ -1,3 +1,6 @@
+#ifndef MATRIX_HPP
+#define MATRIX_HPP
+
 #include <concepts>
 #include <cstddef>
 
@@ -10,15 +13,15 @@ class matrix {
 public:
     vec<T, Columns> data[Rows];
 
-    const T& operator()(std::size_t row, std::size_t col) {
-        return data[row-1][col-1];
-    }
     const T& operator()(std::size_t row, std::size_t col) const {
-        return data[row-1][col-1];
+        return data[row-1](col);
     }
-    constexpr bool operator==(matrix<T, Rows, Columns>& other) {
+    T& operator()(std::size_t row, std::size_t col) {
+        return data[row-1](col);
+    }
+    constexpr bool operator==(const matrix<T, Rows, Columns>& other) const {
         for (size_t i = 1; i <= Rows; i++) {
-            for (size_t j = 0; j <= Columns; j++) {
+            for (size_t j = 1; j <= Columns; j++) {
                 if ((*this)(i, j) != other(i, j)) {
                     return false;
                 }
@@ -40,10 +43,12 @@ public:
     constexpr void scale(const T k) {
         for (size_t i = 1; i <= Rows; i++) {
             for (size_t j = 1; j <= Columns; j++) {
-                (*this)(i, j) += k;
+                (*this)(i, j) *= k;
             }
         }
         return;
     }
 };
 }
+
+#endif

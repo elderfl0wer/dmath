@@ -31,21 +31,21 @@ public:
     // C++20 generates `!=` operator automatically inferred from `==`
     constexpr vec<T, N> operator+(vec<T, N>& other) const {
         vec<T, N> ans;
-        for (size_t i = 0; i <= N; i++) {
-            ans(i) = (*this)(i) + other(1); 
+        for (size_t i = 1; i <= N; i++) {
+            ans(i) = (*this)(i) + other(i); 
         }
         return ans;
     }
     constexpr vec<T, N> operator-(vec<T, N>& other) const {
         vec<T, N> ans;
-        for (size_t i = 0; i <= N; i++) {
-            ans(i) = (*this)(i) - other(1); 
+        for (size_t i = 1; i <= N; i++) {
+            ans(i) = (*this)(i) - other(i); 
         }
         return ans;
     }
     constexpr vec<T, N> operator*(const T k) const {
         vec<T, N> ans;
-        for (size_t i = 0; i <= N; i++) {
+        for (size_t i = 1; i <= N; i++) {
             ans(i) = (*this)(i) * k; 
         }
         return ans;
@@ -56,16 +56,16 @@ public:
     [[nodiscard]]
     constexpr double magnitude() const {
         double sum{};
-        for (size_t i = 0; i <= N; i++) {
+        for (size_t i = 1; i <= N; i++) {
             sum += pow((*this)(i), 2);
         }
-        return sum;
+        return std::sqrt(sum);
     }
     constexpr void normalize() {
-        (*this) *= 1 / magnitude();
+        (*this) = (*this) * (1 / magnitude());
     }
     constexpr void scale(const T k) {
-        (*this) *= k;
+        (*this) = (*this) * k;
     }
 };
 }

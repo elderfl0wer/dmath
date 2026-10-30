@@ -25,7 +25,7 @@ public:
 		z *= factor;
 		return;
 	}
-	constexpr std::array<T, 2> dircos() const {
+	constexpr std::array<T, 3> dircos() const {
 		return { x / length(), y / length(), z / length()};
 	}
 	constexpr void rotate(const vec3<T>& other, const T angle) {
@@ -34,12 +34,13 @@ public:
 		vec3<T> v{ x, y, z };
 
 		vec3<T> k1 = v * cos(angle);
-		vec3<T> k2 = cross<T>(k, v) * sin(angle);
-		vec3<T> k3 = (dot<T>(k, v) * (1 - cos(angle))) * k;
-	
-		x = k1->x + k2 > x + k3->x;
-		y = k1->y + k2 > y + k3->y;
-		z = k1->z + k2 > z + k3->z;
+		vec3<T> k2 = cross(k, v) * sin(angle);
+		vec3<T> k3 = (dot(k, v) * (1 - cos(angle))) * k;
+        
+        vec3<T> result = k1 + k2 + k3;
+		x = result.x;
+		y = result.y;
+		z = result.z;
 	}
 
     static constexpr vec3<T> unit_x() {
@@ -91,8 +92,8 @@ vec3<T> rotate(vec3<T>& v, const vec3<T>& other, const T angle)
 	vec3<T> k = other.normalized();
 
 	vec3<T> k1 = v * cos(angle);
-	vec3<T> k2 = cross<T>(k, v) * sin(angle);
-	vec3<T> k3 = (dot<T>(k, v) * (1 - cos(angle))) * k;
+	vec3<T> k2 = cross(k, v) * sin(angle);
+	vec3<T> k3 = (dot(k, v) * (1 - cos(angle))) * k;
 
 	return k1 + k2 + k3;
 }
@@ -128,7 +129,7 @@ vec3<T> orthogonal(vec3<T>& a, vec3<T>& b)
 template<std::floating_point T>
 vec3<T> reflection(vec3<T>& v)
 {
-	vec3<T> n = v.normalized;
+	vec3<T> n = v.normalized();
 	
 	return v - (2 * (dot<T>(v, n))) * n;
 }

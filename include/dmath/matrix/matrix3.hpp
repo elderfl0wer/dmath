@@ -19,12 +19,24 @@ public:
     }
     constexpr T& operator()(std::size_t row, std::size_t col) {
         if (row < 1 || row > 3 || col < 1 || col > 3) {
-        throw std::out_of_range("index out of range");
+            throw std::out_of_range("index out of range");
         }
         switch (col) {
             case 1: return rows[row-1].x;
             case 2: return rows[row-1].y;
             case 3: return rows[row-1].z;
+            default: throw std::out_of_range("index out of range");
+        }       
+    }
+    constexpr const T& operator()(std::size_t row, std::size_t col) const {
+        if (row < 1 || row > 3 || col < 1 || col > 3) {
+            throw std::out_of_range("index out of range");
+        }
+        switch (col) {
+            case 1: return rows[row-1].x;
+            case 2: return rows[row-1].y;
+            case 3: return rows[row-1].z;
+            default: throw std::out_of_range("index out of range");
         }       
     }
     constexpr mat3<T> operator+(const T k) const {
@@ -59,7 +71,7 @@ public:
 
         return ans;
     }
-    constexpr mat3<T> operator<=>(const mat3<T>& other) const = default;
+    constexpr auto operator<=>(const mat3<T>& other) const = default;
     constexpr mat3<T> operator*(const T k) const {
         mat3<T> ans = *this;
         ans(1, 1) *= k; ans(1, 2) *= k; ans(1, 3) *= k;
@@ -119,7 +131,9 @@ public:
     constexpr T magnitude() const {
         mat3<T> ans = *this;
      
-        return ans(1, 1)*(ans(2, 2)*ans(3, 3)-ans(2, 3)*ans(3, 2)) - ans(1, 2)*(ans(2, 1)*ans(3, 3)-ans(2, 3)*ans(3, 1) + ans(1, 3)*(ans(2, 1)*ans(3, 2)- ans(2, 2)*ans(3, 1)));
+        return ans(1, 1)*(ans(2, 2)*ans(3, 3) - ans(2, 3)*ans(3, 2)) 
+             - ans(1, 2)*(ans(2, 1)*ans(3, 3) - ans(2, 3)*ans(3, 1)) 
+             + ans(1, 3)*(ans(2, 1)*ans(3, 2) - ans(2, 2)*ans(3, 1));
     }
     constexpr bool is_singular() const {
         if ((*this).magnitude() == 0) {
@@ -133,7 +147,7 @@ public:
 
         return k(1, 1)+k(2, 2)+k(3, 3);
     }
-    constexpr void fill(const T k) const {
+    constexpr void fill(const T k) {
         (*this)(1, 1) = k;
         (*this)(1, 2) = k;
         (*this)(1, 3) = k;
@@ -190,10 +204,8 @@ public:
 using mat3f = mat3<float>;
 using mat3d = mat3<double>; 
 
-using namespace dmath;
-
 template<std::floating_point T>
-T minor(const mat3<T>& m, std::size_t row, std::size_t col)
+T mat3_minor(const mat3<T>& m, std::size_t row, std::size_t col)
 {
     mat2<T> sub;
 
@@ -225,7 +237,7 @@ mat3<T> cofactor(const mat3<T>& m)
     for (std::size_t i = 1; i <= 3; i++) {
         for (std::size_t j = 1; j <= 3; j++) {
 
-            ans(i, j) = minor(m, i, j);
+            ans(i, j) = mat3_minor(m, i, j);
 
             // checkerboard sign pattern
             if ((i + j) % 2 == 1)
@@ -251,7 +263,7 @@ mat3<T> inverse(const mat3<T>& m)
         throw std::out_of_range("matrix is uninversable");
     }
 
-    return adjacent(m) / m.magnitude();
+    return adjacent(m) * (1 / m.magnitude());
 }
 
 
