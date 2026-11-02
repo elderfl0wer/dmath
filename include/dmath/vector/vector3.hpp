@@ -13,10 +13,10 @@ public:
 	T x, y, z;
 
 	constexpr T length() const {
-		return std::sqrt(x * x + y * y + z * z);
+		return sqrt(x * x + y * y + z * z);
 	}
 	constexpr vec3<T> normalized() const {
-		const double factor{ 1 / std::sqrt(x * x + y * y + z * z) };
+		const double factor{ 1 / sqrt(x * x + y * y + z * z) };
 		return { x * factor, y * factor, z*factor};
 	}
 	constexpr void scale(const T factor) {

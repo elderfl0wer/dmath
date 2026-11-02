@@ -59,7 +59,7 @@ public:
         for (size_t i = 1; i <= N; i++) {
             sum += pow((*this)(i), 2);
         }
-        return std::sqrt(sum);
+        return sqrt(sum);
     }
     constexpr void normalize() {
         (*this) = (*this) * (1 / magnitude());
