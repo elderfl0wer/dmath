@@ -6,3 +6,4 @@
 #include "matrix/matrix2.hpp"
 #include "matrix/matrix3.hpp"
 #include "matrix/matrix.hpp"
+#include "quantity/quantity.hpp"
