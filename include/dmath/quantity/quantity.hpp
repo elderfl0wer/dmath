@@ -5,9 +5,12 @@ namespace dmath {
 template<typename T, class Unit>
 class quantity
 {
-public:
+private:
     T data;
+
+public:
     using quantity_t = quantity<T, Unit>;
+    constexpr explicit quantity(T value): data(value) {};
 
     constexpr quantity_t operator+(const quantity_t& other) const {
         return {.data = this->data-other.data};
