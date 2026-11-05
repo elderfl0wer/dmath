@@ -23,6 +23,18 @@ public:
         return (this->data == other.data) ? true : false;
     }
     constexpr auto operator<=>(const quantity_t& other) const = default;
+    constexpr quantity_t operator+() const;
+    constexpr quantity_t operator-() const;
+    constexpr quantity_t operator*(const T factor) { return this->data*factor; }
+    constexpr quantity_t operator/(const T factor) { return this->data/factor; }
+    constexpr quantity<T, class returnUnit> operator*(const quantity<T, class parameterUnit>& other) const {
+        quantity<T, returnUnit> qt(this->data*other.data);
+        return qt;
+    }
+    constexpr quantity<T, class returnUnit> operator/(const quantity<T, class parameterUnit>& other) const {
+        quantity<T, returnUnit> qt(this->data/other.data);
+        return qt;
+    }
 };
 } // !NAMESPACE DMATH
 
