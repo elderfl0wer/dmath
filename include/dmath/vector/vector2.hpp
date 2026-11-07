@@ -63,6 +63,10 @@ public:
 	constexpr auto operator<=>(const vec2& other) const = default;
 };
 
+using vec2i = vec2<int>;
+using vec2f = vec2<float>;
+using vec2d = vec2<double>;
+
 using namespace dmath;
 
 template<std::floating_point T>
@@ -110,7 +114,7 @@ template<std::floating_point T>
 vec2<T> reflection(vec2<T>& v)
 {
 	vec2<T> n = v.normalized();
-	
+
 	return v - n*(2 * (dot<T>(v, n)));
 }
 

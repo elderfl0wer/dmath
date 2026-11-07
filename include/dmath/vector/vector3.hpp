@@ -37,7 +37,7 @@ public:
 		vec3<T> k1 = v * cos(angle);
 		vec3<T> k2 = cross(k, v) * sin(angle);
 		vec3<T> k3 = (dot(k, v) * (1 - cos(angle))) * k;
-        
+
         vec3<T> result = k1 + k2 + k3;
 		x = result.x;
 		y = result.y;
@@ -73,6 +73,10 @@ public:
 	constexpr auto operator<=>(const vec3& other) const = default;
 };
 
+using vec3i = vec3<int>;
+using vec3f = vec3<float>;
+using vec3d = vec3<double>;
+
 using namespace dmath;
 
 template<std::floating_point T>
@@ -88,7 +92,7 @@ vec3<T> cross(vec3<T>& a, vec3<T>& b)
 }
 
 template<std::floating_point T>
-vec3<T> rotate(vec3<T>& v, const vec3<T>& other, const T angle) 
+vec3<T> rotate(vec3<T>& v, const vec3<T>& other, const T angle)
 {
 	vec3<T> k = other.normalized();
 
@@ -131,7 +135,7 @@ template<std::floating_point T>
 vec3<T> reflection(vec3<T>& v)
 {
 	vec3<T> n = v.normalized();
-	
+
 	return v - (2 * (dot<T>(v, n))) * n;
 }
 

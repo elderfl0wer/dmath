@@ -14,7 +14,7 @@ template<numeric T>
 class mat3 {
 public:
     vec3<T> rows[3]; // the horizontal ones
-    
+
     constexpr const vec3<T>& operator[](std::size_t i) const {
         return rows[i];
     }
@@ -27,7 +27,7 @@ public:
             case 2: return rows[row-1].y;
             case 3: return rows[row-1].z;
             default: throw std::out_of_range("index out of range");
-        }       
+        }
     }
     constexpr const T& operator()(std::size_t row, std::size_t col) const {
         if (row < 1 || row > 3 || col < 1 || col > 3) {
@@ -38,7 +38,7 @@ public:
             case 2: return rows[row-1].y;
             case 3: return rows[row-1].z;
             default: throw std::out_of_range("index out of range");
-        }       
+        }
     }
     constexpr mat3<T> operator+(const T k) const {
         mat3<T> ans = *this;
@@ -128,12 +128,12 @@ public:
             {0, 0, 0}
         };
     }
-    
+
     constexpr T magnitude() const {
         mat3<T> ans = *this;
-     
-        return ans(1, 1)*(ans(2, 2)*ans(3, 3) - ans(2, 3)*ans(3, 2)) 
-             - ans(1, 2)*(ans(2, 1)*ans(3, 3) - ans(2, 3)*ans(3, 1)) 
+
+        return ans(1, 1)*(ans(2, 2)*ans(3, 3) - ans(2, 3)*ans(3, 2))
+             - ans(1, 2)*(ans(2, 1)*ans(3, 3) - ans(2, 3)*ans(3, 1))
              + ans(1, 3)*(ans(2, 1)*ans(3, 2) - ans(2, 2)*ans(3, 1));
     }
     constexpr bool is_singular() const {
@@ -188,7 +188,7 @@ public:
         if (-1*m.transpose() == m) {
             return true;
         }
-        
+
         return false;
     }
     constexpr bool is_identity() const {
@@ -202,8 +202,9 @@ public:
 
 };
 
+using mat3i = mat3<int>;
 using mat3f = mat3<float>;
-using mat3d = mat3<double>; 
+using mat3d = mat3<double>;
 
 template<std::floating_point T>
 T mat3_minor(const mat3<T>& m, std::size_t row, std::size_t col)

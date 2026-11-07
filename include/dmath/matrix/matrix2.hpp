@@ -191,11 +191,12 @@ public:
 
 };
 
+using mat2i = mat2<int>;
 using mat2f = mat2<float>;
 using mat2d = mat2<double>;
 
 template<std::floating_point T>
-mat2<T> minor_matrix(const mat2<T>& m) 
+mat2<T> minor_matrix(const mat2<T>& m)
 {
     mat2<T> ans;
     ans(1, 1) = m(2, 2);
@@ -220,7 +221,7 @@ template<std::floating_point T>
 mat2<T> adjacent(const mat2<T>& m)
 {
     mat2<T> ans = cofactor(m);
-    
+
     return ans.transpose();
 }
 
