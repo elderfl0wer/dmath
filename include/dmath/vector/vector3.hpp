@@ -5,8 +5,8 @@
 #include <cmath>
 #include <concepts>
 
-#include "vector.hpp"
- 
+ #include "../concepts/numeric.hpp"
+
 namespace dmath {
 template<numeric T>
 class vec3 {

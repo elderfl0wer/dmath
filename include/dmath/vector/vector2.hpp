@@ -5,8 +5,8 @@
 #include <concepts>
 #include <array>
 
-#include "vector.hpp"
 #include "vector3.hpp"
+#include "../concepts/numeric.hpp"
 
 namespace dmath {
 

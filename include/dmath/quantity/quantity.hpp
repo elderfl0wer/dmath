@@ -1,8 +1,10 @@
 #ifndef QUANTITY_HPP
 #define QUANTITY_HPP
 
+#include "../concepts/numeric.hpp"
+
 namespace dmath {
-template<typename T, class Unit>
+template<numeric T, class Unit>
 class quantity
 {
 private:

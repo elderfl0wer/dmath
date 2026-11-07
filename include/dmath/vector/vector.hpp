@@ -3,15 +3,13 @@
 
 #include <array>
 #include <cmath>
-#include <concepts>
 #include <stdexcept>
+
+#include "../concepts/numeric.hpp"
 
 namespace dmath {
 
 // numeric concept is used in all vector & matrix files but defined only here.
-template<typename T>
-concept numeric = std::integral<T> || std::floating_point<T>;
-
 template<numeric T, std::size_t N>
 class vec {
 public:

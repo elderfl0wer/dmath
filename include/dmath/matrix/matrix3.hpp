@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "../matrix/matrix2.hpp"
+#include "../concepts/numeric.hpp"
 
 namespace dmath {
 

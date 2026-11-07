@@ -7,3 +7,4 @@
 #include "matrix/matrix3.hpp"
 #include "matrix/matrix.hpp"
 #include "quantity/quantity.hpp"
+#include "concepts/numeric.hpp"

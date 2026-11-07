@@ -8,6 +8,7 @@
 #include <stdexcept>
 
 #include "../vector/vector2.hpp"
+#include "../concepts/numeric.hpp"
 
 namespace dmath {
 

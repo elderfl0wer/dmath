@@ -4,6 +4,7 @@
 #include <cstddef>
 
 #include "../vector/vector.hpp"
+#include "../concepts/numeric.hpp"
 
 namespace dmath {
 
