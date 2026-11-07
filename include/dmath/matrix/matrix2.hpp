@@ -11,7 +11,7 @@
 
 namespace dmath {
 
-template<std::floating_point T>
+template<numeric T>
 class mat2 {
 public:
     vec2<T> rows[2]; // the horizontal ones

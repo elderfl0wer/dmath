@@ -1,14 +1,13 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
-#include <concepts>
 #include <cstddef>
 
 #include "../vector/vector.hpp"
 
 namespace dmath {
 
-template<std::floating_point T, std::size_t Rows, std::size_t Columns>
+template<numeric T, std::size_t Rows, std::size_t Columns>
 class matrix {
 public:
     vec<T, Columns> data[Rows];

@@ -9,7 +9,7 @@
 
 namespace dmath {
 
-template<std::floating_point T>
+template<numeric T>
 class mat3 {
 public:
     vec3<T> rows[3]; // the horizontal ones

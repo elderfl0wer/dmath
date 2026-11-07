@@ -5,9 +5,10 @@
 #include <cmath>
 #include <concepts>
 
+#include "vector.hpp"
+ 
 namespace dmath {
-
-template<std::floating_point T>
+template<numeric T>
 class vec3 {
 public:
 	T x, y, z;

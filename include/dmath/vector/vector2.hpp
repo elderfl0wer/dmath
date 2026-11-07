@@ -5,11 +5,12 @@
 #include <concepts>
 #include <array>
 
+#include "vector.hpp"
 #include "vector3.hpp"
 
 namespace dmath {
 
-template<std::floating_point T>
+template<numeric T>
 class vec2 {
 public:
 	T x, y;

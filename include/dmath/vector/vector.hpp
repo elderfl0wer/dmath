@@ -8,7 +8,11 @@
 
 namespace dmath {
 
-template<std::floating_point T, std::size_t N>
+// numeric concept is used in all vector & matrix files but defined only here.
+template<typename T>
+concept numeric = std::integral<T> || std::floating_point<T>;
+
+template<numeric T, std::size_t N>
 class vec {
 public:
     std::array<T, N> data;
