@@ -15,7 +15,6 @@ void applyBayerDither(dmath::matrix<T, Rows, Columns>& img) {
         { 15.0f / 16.0f,  7.0f / 16.0f, 13.0f / 16.0f,  5.0f / 16.0f }
     }};
 
-    // Loop 1-based to match dmath::matrix::operator()(row, col)
     for (std::size_t r = 1; r <= Rows; ++r) {
         for (std::size_t c = 1; c <= Columns; ++c) {
             // Map 1-based (r, c) into 1-based [1..4] Bayer indices
@@ -34,7 +33,6 @@ void applyBayerDither(dmath::matrix<T, Rows, Columns>& img) {
 }
 
 int main() {
-    // Create an 8x8 grayscale gradient matrix
     dmath::matrix<float, 8, 8> image{};
     for (std::size_t r = 1; r <= 8; ++r) {
         for (std::size_t c = 1; c <= 8; ++c) {
