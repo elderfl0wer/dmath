@@ -10,6 +10,8 @@ The informal goal is to make an API that is simple from a maths perspective. Doc
 - C++23 compiler
 
 ## Example
+ - [Bayer Dithering](examples/bayer-dithering.cpp)
+
 ```cpp
 #include <iostream>
 #include <cmath>
